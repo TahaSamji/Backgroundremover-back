@@ -56,7 +56,7 @@ app.post("/", (req, res) => {
      
         let originalblob = new Blob([myimage.data], { type: 'image/png' });
           
-        myimage.mv('tmp/picture.png', async function (err) {
+        myimage.mv('/tmp/picture.png', async function (err) {
             if (err) {
                 console.log(err);
                 return res.status(500).send(err);
