@@ -59,7 +59,7 @@ app.post("/", (req, res) => {
      
         // let originalblob = new Blob([myimage.data], { type: 'image/png' });
           
-        myimage.mv('tmp/picture.png', async function (err) {
+        myimage.mv('/tmp/picture.png', async function (err) {
             if (err) {
                 console.log(err);
                 return res.status(500).send(err);
@@ -79,7 +79,7 @@ app.post("/", (req, res) => {
         fs.writeFileSync('tmp/output.png', dataURL.split(';base64,').pop(), { encoding: 'base64' });
     
 
-            const processedImage = fs.readFileSync('tmp/output.png');
+            const processedImage = fs.readFileSync('/tmp/output.png');
             res.setHeader('Content-Type', 'image/png');
 
             return res.status(200).send(processedImage);
