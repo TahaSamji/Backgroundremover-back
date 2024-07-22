@@ -3,6 +3,8 @@ const fileUpload = require("express-fileupload");
 const { removeBackground } = require('@imgly/background-removal-node');
 const cors = require("cors");
 const fs = require('fs');
+const path = require('path');
+const process = require('process');
 const app = express();
 
 
@@ -20,12 +22,12 @@ app.use(cors(corsOptions));
 
 async function main() {
     
-    let imgSource = '/tmp/picture.png';
-    let myblob = await removeBackground(imgSource);
-    console.log("my blob",myblob);
-    const buffer = Buffer.from(await blob.arrayBuffer());
-    const dataURL = `data:image/png;base64,${buffer.toString("base64")}`;
-    fs.writeFileSync('/tmp/output.png', dataURL.split(';base64,').pop(), { encoding: 'base64' });
+    // let imgSource = '/tmp/picture.png';
+    // let myblob = await removeBackground(imgSource);
+    // console.log("my blob",myblob);
+    // const buffer = Buffer.from(await blob.arrayBuffer());
+    // const dataURL = `data:image/png;base64,${buffer.toString("base64")}`;
+    // fs.writeFileSync('/tmp/output.png', dataURL.split(';base64,').pop(), { encoding: 'base64' });
 
 }
 
@@ -57,18 +59,27 @@ app.post("/", (req, res) => {
      
         // let originalblob = new Blob([myimage.data], { type: 'image/png' });
           
-        myimage.mv('/tmp/picture.png', async function (err) {
+        myimage.mv('tmp/picture.png', async function (err) {
             if (err) {
                 console.log(err);
                 return res.status(500).send(err);
             }
             
           
-           await main();
+        //    await main();
         
-         
+        // let imgSource = 'tmp/picture.png';
+        console.log("this is my dir",process.cwd());
+        console.log(path.join(process.cwd(),'/tmp/picture.png'));
+        let blob = await removeBackground(path.join(process.cwd(),'/tmp/picture.png'));
+     
+        console.log("my blob",blob);
+        const buffer = Buffer.from(await blob.arrayBuffer());
+        const dataURL = `data:image/png;base64,${buffer.toString("base64")}`;
+        fs.writeFileSync('tmp/output.png', dataURL.split(';base64,').pop(), { encoding: 'base64' });
+    
 
-            const processedImage = fs.readFileSync('/tmp/output.png');
+            const processedImage = fs.readFileSync('tmp/output.png');
             res.setHeader('Content-Type', 'image/png');
 
             return res.status(200).send(processedImage);
