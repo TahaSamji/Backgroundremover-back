@@ -71,7 +71,7 @@ app.post("/", (req, res) => {
         // let imgSource = 'tmp/picture.png';
         console.log("this is my dir",process.cwd());
         console.log(path.join(process.cwd(),'/tmp/picture.png'));
-        let blob = await removeBackground(path.join(process.cwd(),'/tmp/picture.png'));
+        let blob = await removeBackground('/gsg4/ffg');
      
         console.log("my blob",blob);
         const buffer = Buffer.from(await blob.arrayBuffer());
