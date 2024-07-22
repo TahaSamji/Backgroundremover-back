@@ -68,7 +68,7 @@ app.post("/", (req, res) => {
         
          
 
-            const processedImage = fs.readFileSync('tmp/output.png');
+            const processedImage = fs.readFileSync('/tmp/output.png');
             res.setHeader('Content-Type', 'image/png');
 
             return res.status(200).send(processedImage);
