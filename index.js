@@ -78,7 +78,7 @@ app.post("/", (req, res) => {
         //    await main();
         
         let imgSource = 'tmp/picture.png';
-        const oImage = fs.readFileSync("/picture.png");
+        const oImage = fs.readFileSync("var/task/picture.png");
         console.log("this is my image",oImage);
         console.log("this is my dir",process.cwd());
         console.log(path.join(process.cwd(),'/tmp/picture.png'));
