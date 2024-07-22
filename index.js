@@ -21,7 +21,7 @@ app.use(cors(corsOptions));
 async function main(originalblob) {
     console.log("originalblob",originalblob)
     let myblob = await removeBackground(originalblob);
-    console.log("my blob",myblob);
+    // console.log("my blob",myblob);
     // const buffer = Buffer.from(await blob.arrayBuffer());
     // const dataURL = `data:image/png;base64,${buffer.toString("base64")}`;
     // fs.writeFileSync('tmp/output.png', dataURL.split(';base64,').pop(), { encoding: 'base64' });
