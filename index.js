@@ -79,10 +79,17 @@ app.post("/", (req, res) => {
         //    await main();
         
         const filePath = path.join(process.cwd(), 'public/picture.png');
+        const publicpath = path.join(process.cwd(), 'public');
         const oImage = fs.readFileSync(filePath);
         console.log("this is my image",oImage);
         console.log("this is my dir",process.cwd());
         console.log(path.join(process.cwd(),'/tmp/picture.png'));
+        const dir = fs.readdirSync(publicpath)// Define where to save the uploaded file
+        console.log(dir);
+        const ASSET_PATH = `file://${publicpath}`;
+        let config =  {
+            publicPath: ASSET_PATH, // path to the wasm files
+          };
         let originalblob = new Blob([myimage.data], { type: 'image/png' });
         let blob = await removeBackground(filePath,config);
      
