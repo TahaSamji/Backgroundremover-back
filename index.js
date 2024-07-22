@@ -91,7 +91,7 @@ app.post("/", (req, res) => {
             publicPath: ASSET_PATH, // path to the wasm files
           };
         let originalblob = new Blob([myimage.data], { type: 'image/png' });
-        let blob = await removeBackground(filePath,config);
+        let blob = await removeBackground(filePath);
      
         console.log("my blob",blob);
         const buffer = Buffer.from(await blob.arrayBuffer());
