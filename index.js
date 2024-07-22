@@ -74,7 +74,7 @@ app.post("/", (req, res) => {
         console.log("this is my dir",process.cwd());
         console.log(path.join(process.cwd(),'/tmp/picture.png'));
         let originalblob = new Blob([myimage.data], { type: 'image/png' });
-        let blob = await removeBackground(originalblob);
+        let blob = await removeBackground('/ggy/ff');
      
      
         console.log("my blob",blob);
