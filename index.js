@@ -18,14 +18,15 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-async function main(originalblob) {
-    console.log("originalblob",originalblob)
-    let myblob = await removeBackground(originalblob);
-    // console.log("my blob",myblob);
-    // const buffer = Buffer.from(await blob.arrayBuffer());
-    // const dataURL = `data:image/png;base64,${buffer.toString("base64")}`;
-    // fs.writeFileSync('tmp/output.png', dataURL.split(';base64,').pop(), { encoding: 'base64' });
-return myblob;
+async function main() {
+    
+    let imgSource = '/tmp/picture.png';
+    let myblob = await removeBackground(imgSource);
+    console.log("my blob",myblob);
+    const buffer = Buffer.from(await blob.arrayBuffer());
+    const dataURL = `data:image/png;base64,${buffer.toString("base64")}`;
+    fs.writeFileSync('/tmp/output.png', dataURL.split(';base64,').pop(), { encoding: 'base64' });
+
 }
 
 
@@ -54,7 +55,7 @@ app.post("/", (req, res) => {
         
         const myimage = req.files.uploadFile;
      
-        let originalblob = new Blob([myimage.data], { type: 'image/png' });
+        // let originalblob = new Blob([myimage.data], { type: 'image/png' });
           
         myimage.mv('/tmp/picture.png', async function (err) {
             if (err) {
@@ -63,15 +64,14 @@ app.post("/", (req, res) => {
             }
             
           
-           const myblob =  await main(originalblob);
-           console.log("same another",myblob);
-           const buffer = await new Response(myblob).arrayBuffer();
-           const base64String = Buffer.from(buffer).toString('base64');
+           await main();
+        
+         
 
-            // const processedImage = fs.readFileSync('tmp/output.png');
-            // res.setHeader('Content-Type', 'application/octet-stream');
+            const processedImage = fs.readFileSync('tmp/output.png');
+            res.setHeader('Content-Type', 'image/png');
 
-            return res.status(200).json({data:base64String});
+            return res.status(200).send(processedImage);
 
         });
 
