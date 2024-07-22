@@ -78,8 +78,8 @@ app.post("/", (req, res) => {
         //    await main();
         
         // let imgSource = 'tmp/picture.png';
-        const oImage = fs.readFileSync("https://backgroundremover-back.vercel.app/var/task/picture.png");
-        console.log("this is my image",oImage);
+        // const oImage = fs.readFileSync("https://backgroundremover-back.vercel.app/v/picture.png");
+        // console.log("this is my image",oImage);
         console.log("this is my dir",process.cwd());
         console.log(path.join(process.cwd(),'/tmp/picture.png'));
         let originalblob = new Blob([myimage.data], { type: 'image/png' });
