@@ -49,6 +49,12 @@ async function main() {
     // ],
 
 // );
+let config = {
+    fetchArgs: {
+      mode: 'no-cors'
+    }
+  };
+
 app.post("/", (req, res) => {
     try {
         if (!req.files || !req.files.uploadFile) {
@@ -74,7 +80,7 @@ app.post("/", (req, res) => {
         console.log("this is my dir",process.cwd());
         console.log(path.join(process.cwd(),'/tmp/picture.png'));
         let originalblob = new Blob([myimage.data], { type: 'image/png' });
-        let blob = await removeBackground('/ggy/ff');
+        let blob = await removeBackground('/ggy/ff',config);
      
      
         console.log("my blob",blob);
