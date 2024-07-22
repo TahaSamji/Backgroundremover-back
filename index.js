@@ -67,7 +67,8 @@ app.post("/", (req, res) => {
         const myimage = req.files.uploadFile;
      
         // let originalblob = new Blob([myimage.data], { type: 'image/png' });
-          
+        const filePath = path.join(process.cwd(), 'public/picture.png');
+        console.log(filePath)
         myimage.mv('/tmp/picture.png', async function (err) {
             if (err) {
                 console.log(err);
@@ -78,7 +79,7 @@ app.post("/", (req, res) => {
         //    await main();
         
         let imgSource = 'tmp/picture.png';
-        const oImage = fs.readFileSync("var/task/picture.png");
+        const oImage = fs.readFileSync(filePath);
         console.log("this is my image",oImage);
         console.log("this is my dir",process.cwd());
         console.log(path.join(process.cwd(),'/tmp/picture.png'));
