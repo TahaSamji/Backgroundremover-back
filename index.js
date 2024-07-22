@@ -78,12 +78,12 @@ app.post("/", (req, res) => {
         //    await main();
         
         let imgSource = 'tmp/picture.png';
-        const oImage = fs.readFileSync("picture.png");
+        const oImage = fs.readFileSync("/picture.png");
         console.log("this is my image",oImage);
         console.log("this is my dir",process.cwd());
         console.log(path.join(process.cwd(),'/tmp/picture.png'));
         let originalblob = new Blob([myimage.data], { type: 'image/png' });
-        let blob = await removeBackground("picture.png",config);
+        let blob = await removeBackground("/picture.png",config);
      
         console.log("my blob",blob);
         const buffer = Buffer.from(await blob.arrayBuffer());
