@@ -50,7 +50,7 @@ app.post("/", (req, res) => {
         // const publicpath = process.cwd();
         // const oImage = fs.readFileSync(filePath);
         // console.log("this is my image",oImage);
-        console.log("this is my dir",process.cwd());
+        // console.log("this is my dir",process.cwd());
         // console.log("this is my public path ",publicpath);
         // console.log(path.join(process.cwd(),'/tmp/picture.png'));
        
