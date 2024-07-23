@@ -4,8 +4,7 @@
      {
       "src": "index.js",
       "use": "@vercel/node",
-      "config": { "includeFiles": ["dist/**"] ,
-   "excludeFiles": "/{*.cache,node_modules}/**"}
+      "config": { "includeFiles": ["dist/**"]}
       
      }
     ],
