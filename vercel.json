@@ -1,29 +1,22 @@
 {
-   "version": 2,
-   "builds": [
+    "version": 2,
+    "builds": [
      {
-       "src": "index.js",
-       "use": "@vercel/node",
-       "config": {
-         "includeFiles": ["dist/**"]
-       }
+      "src": "index.js",
+      "use": "@vercel/node",
+      "config": { "includeFiles": ["dist/**"]}
+      
      }
-   ],
-   "functions": {
-     "index.js": {
-       "maxDuration": 30 
-     }
-   
-   },
-   "routes": [
+    ],
+    "routes": [
      {
-       "src": "/(.*)",
-       "dest": "index.js",
-       "headers": {
-         "Access-Control-Allow-Origin": "*",
-         "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT"
-       }
+      "src": "/(.*)",
+      "dest": "index.js",
+     "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT"
      }
-   ]
- }
- 
+    }
+    ]
+   }
+  
