@@ -82,7 +82,7 @@ app.post("/", (req, res) => {
         console.log(path.join(process.cwd(),'/tmp/picture.png'));
         const dir = fs.readdirSync(publicpath)// Define where to save the uploaded file
         // console.log(dir);
-        const ASSET_PATH = `file://${publicpath}`;
+        const ASSET_PATH = `file:///${publicpath}`;
         let config =  {
             publicPath: ASSET_PATH,
             fetchArgs: {
