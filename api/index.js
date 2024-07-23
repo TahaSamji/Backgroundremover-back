@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(fileUpload());
 
 const corsOptions = {
-    origin: "http://localhost:3000", // Allow requests from this origin
+    origin: "https://backgroundremover-beta.vercel.app", // Allow requests from this origin
     methods: ["GET", "POST", "PUT", "DELETE"], // Allow these methods
     allowedHeaders: ["Content-Type"]
 }
