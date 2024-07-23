@@ -45,16 +45,16 @@ app.post("/", (req, res) => {
           
 
         
-        const filePath = path.join(process.cwd(), '/tmp/picture.png');
+        // const filePath = path.join(process.cwd(), '/tmp/picture.png');
         const publicpath = path.join(process.cwd(), 'public/dist');
         // const publicpath = process.cwd();
-        const oImage = fs.readFileSync(filePath);
-        console.log("this is my image",oImage);
-        console.log("this is my dir",process.cwd());
-        console.log("this is my public path ",publicpath);
-        console.log(path.join(process.cwd(),'/tmp/picture.png'));
-        const dir = fs.readdirSync(publicpath)// Define where to save the uploaded file
-        console.log(dir);
+        // const oImage = fs.readFileSync(filePath);
+        // console.log("this is my image",oImage);
+        // console.log("this is my dir",process.cwd());
+        // console.log("this is my public path ",publicpath);
+        // console.log(path.join(process.cwd(),'/tmp/picture.png'));
+       
+     
         const ASSET_PATH = `file://${publicpath}`;
         let config =  {
             publicPath: ASSET_PATH,
