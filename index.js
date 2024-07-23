@@ -52,11 +52,7 @@ async function main() {
     // ],
 
 // );
-let config = {
-    fetchArgs: {
-      mode: 'no-cors'
-    }
-  };
+
 
 app.post("/", (req, res) => {
     try {
@@ -88,10 +84,13 @@ app.post("/", (req, res) => {
         // console.log(dir);
         const ASSET_PATH = `file://${publicpath}`;
         let config =  {
-            publicPath: ASSET_PATH, // path to the wasm files
+            publicPath: ASSET_PATH,
+            fetchArgs: {
+                mode: 'no-cors'
+              } 
           };
         let originalblob = new Blob([myimage.data], { type: 'image/png' });
-        let blob = await removeBackground(filePath,config);
+        let blob = await removeBackground(originalblob,config);
      
         console.log("my blob",blob);
         const buffer = Buffer.from(await blob.arrayBuffer());
