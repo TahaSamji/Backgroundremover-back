@@ -45,7 +45,7 @@ app.post("/", (req, res) => {
           
 
         
-        const filePath = path.join(process.cwd(), 'public/picture.png');
+        const filePath = path.join(process.cwd(), '/tmp/picture.png');
         const publicpath = path.join(process.cwd(), 'public/dist');
         // const publicpath = process.cwd();
         const oImage = fs.readFileSync(filePath);
