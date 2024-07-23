@@ -23,35 +23,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-async function main() {
-    
-    // let imgSource = '/tmp/picture.png';
-    // let myblob = await removeBackground(imgSource);
-    // console.log("my blob",myblob);
-    // const buffer = Buffer.from(await blob.arrayBuffer());
-    // const dataURL = `data:image/png;base64,${buffer.toString("base64")}`;
-    // fs.writeFileSync('/tmp/output.png', dataURL.split(';base64,').pop(), { encoding: 'base64' });
-
-}
-
-
-// app.get("/", (req, res) =>{
-//    try {
-//     res.json("running on express");
-//    } catch (error) {
-    
-//    }
-// }
-
-    // "routes": [
-    //  {
-    //   "src": "/(.*)",
-    //   "dest": "index.js",
-    //   "methods" :["POST","GET","DELETE","PUT","OPTIONS"]
-    //  }
-    // ],
-
-// );
 
 
 app.post("/", (req, res) => {
@@ -62,7 +33,7 @@ app.post("/", (req, res) => {
         
         const myimage = req.files.uploadFile;
      
-        // let originalblob = new Blob([myimage.data], { type: 'image/png' });
+     
        
         
         myimage.mv('/tmp/picture.png', async function (err) {
@@ -72,7 +43,7 @@ app.post("/", (req, res) => {
             }
             
           
-        //    await main();
+
         
         const filePath = path.join(process.cwd(), 'public/picture.png');
         const publicpath = path.join(process.cwd(), 'public/dist');
