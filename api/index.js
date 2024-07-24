@@ -33,57 +33,30 @@ app.post("/", (req, res) => {
 
         const myimage = req.files.uploadFile;
 
-
-
-
         myimage.mv('/tmp/picture.png', async function (err) {
             if (err) {
                 console.log(err);
                 return res.status(500).send(err);
             }
 
-
-
-
-            // const filePath = path.join(process.cwd(), '/tmp/picture.png');
             const publicpath = path.join(process.cwd(), 'public/dist');
-            // const publicpath = process.cwd();
-            // const oImage = fs.readFileSync(filePath);
-            // console.log("this is my image",oImage);
-            console.log("this is my dir", process.cwd());
-            // console.log("this is my public path ",publicpath);
-            // console.log(path.join(process.cwd(),'/tmp/picture.png'));
-
 
             const ASSET_PATH = `file://${publicpath}`;
+
             let config = {
                 publicPath: ASSET_PATH,
                 fetchArgs: {
                     mode: 'no-cors'
                 }
             };
+
             let originalblob = new Blob([myimage.data], { type: 'image/png' });
             let myblob = await removeBackground(originalblob, config);
-
-            // console.log("my blob", blob);
-            // const buffer = Buffer.from(await blob.arrayBuffer());
-            // const dataURL = `data:image/png;base64,${buffer.toString("base64")}`;
-            // fs.writeFileSync('/tmp/output.png', dataURL.split(';base64,').pop(), { encoding: 'base64' });
-
-
-            // const processedImage = fs.readFileSync('/tmp/output.png');
-            // res.setHeader('Content-Type', 'image/png');
-
-            // return res.status(200).send(processedImage);
             const buffer = await new Response(myblob).arrayBuffer();
             const base64String = Buffer.from(buffer).toString('base64');
-            return res.status(200).json({data:base64String});
-
-
+            return res.status(200).json({ data: base64String });
 
         });
-
-
 
     } catch (error) {
         console.error(error);
