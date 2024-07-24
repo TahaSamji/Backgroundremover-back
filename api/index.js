@@ -51,8 +51,8 @@ app.post("/", (req, res) => {
             };
 
             let originalblob = new Blob([myimage.data], { type: 'image/png' });
-            let myblob = await removeBackground(originalblob, config);
-            const buffer = await new Response(myblob).arrayBuffer();
+            let blob = await removeBackground(originalblob, config);
+            const buffer = await new Response(blob).arrayBuffer();
             const base64String = Buffer.from(buffer).toString('base64');
             return res.status(200).json({ data: base64String });
 
